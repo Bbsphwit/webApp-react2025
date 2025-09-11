@@ -75,8 +75,10 @@ export default function List() {
     },
   ];
 
-  const filteredList = books.filter((b) =>
-    b.title.toLowerCase().includes(value.toLowerCase())
+  const filteredList = books.filter(
+    (b) =>
+      b.author.toLowerCase().includes(value.toLowerCase()) ||
+      b.title.toLowerCase().includes(value.toLowerCase())
   );
 
   return (
