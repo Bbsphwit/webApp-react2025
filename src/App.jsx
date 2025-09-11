@@ -1,9 +1,11 @@
 import './App.css';
+import Hello from './Count';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Hello/>
         <img src="Octocat.png" className="App-logo" alt="logo" />
         <p>
           Sophonwit <span className="heart">♥️</span> React
