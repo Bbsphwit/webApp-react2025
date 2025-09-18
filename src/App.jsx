@@ -1,30 +1,48 @@
-import './App.css';
-import Hello from './Count';
+import "./App.css";
+import Bmi from "./Bmi";
+import Hello from "./Count"; // This import seems to be a mismatch. You have a Hello component and a Count component.
+import List from "./List";
+import About from "./About";
+import Home from "./Home";
+
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Hello/>
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          Sophonwit <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="navbar">
+        <h1>My React App</h1>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/hello">Counter</Link>
+            </li>
+            <li>
+              <Link to="/bmi">BMI Calculator</Link>
+            </li>
+            <li>
+              <Link to="/list">List Example</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <hr />
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<List />} />
+          <Route path="/bmi" element={<Bmi />} />
+          <Route path="/hello" element={<Hello />} />
+          <Route path="/list" element={<List />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

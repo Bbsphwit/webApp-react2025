@@ -1,10 +1,8 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import "./List.css";
-
 export default function List() {
-  const [value, setValue] = React.useState("");
-
-  const books = [
+  const [value, setValue] = useState("");
+  const book = [
     {
       id: 1,
       title:
@@ -75,47 +73,44 @@ export default function List() {
     },
   ];
 
-  const filteredList = books.filter(
+  const [books, setBooks] = useState(book);
+  const url = "https://potential-cod-q7x96pv77f479x-5001.app.github.dev/books";
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(url);
+        if (response.ok) {
+          const data = await response.json();
+          setBooks(data.books);
+        } else throw Error("Failed to fetch data");
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  const filterList = books.filter(
     (b) =>
-      b.author.toLowerCase().includes(value.toLowerCase()) ||
-      b.title.toLowerCase().includes(value.toLowerCase())
+      b.title.toLowerCase().includes(value.toLowerCase()) ||
+      b.author.toLowerCase().includes(value.toLowerCase())
   );
-
+  const itemList = filterList.map((b) => (
+    <li className="bookItem" key={b.id}>
+      <div className="bookImage">
+        <img src={b.image_url} width="150" />
+      </div>
+      <div className="bookTitle">{b.title}</div>
+      <div className="bookAuthor">{b.author}</div>
+      <div className="bookPrice">{b.price}$</div>
+    </li>
+  ));
   return (
-    <div className="booklist-container">
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder="Search by book title..."
-        aria-label="Search books"
-        className="search-input"
-      />
-
-      {filteredList.length > 0 ? (
-        <ol className="book-list">
-          {filteredList.map((book) => (
-            <li key={book.id} className="book-item">
-              <img
-                src={book.image_url}
-                alt={`Cover of ${book.title}`}
-                className="book-image"
-              />
-              <div className="book-info">
-                <h3 className="book-title">{book.title}</h3>
-                <p className="book-author">
-                  <strong>Author:</strong> {book.author}
-                </p>
-                <p className="book-price">
-                  <strong>Price:</strong> ${book.price.toFixed(2)}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      ) : (
-        <p className="no-results">No books found. Try a different title.</p>
-      )}
-    </div>
+    <>
+      <div className="searchbox">
+        Search: <input type="text" onChange={(e) => setValue(e.target.value)} />
+      </div>
+      <ol className="bookList">{itemList}</ol>
+    </>
   );
 }
