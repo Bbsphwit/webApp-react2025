@@ -1,0 +1,103 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.bmi-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 26px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: 90%;
+  max-width: 380px;
+  text-align: center;
+}
+
+.bmi-input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.bmi-input-group label {
+  display: block;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.bmi-input-group input {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.bmi-input-group input:focus {
+  outline: none;
+  border-color: #007aff;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+.bmi-button {
+  background-color: #007aff;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 15px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 122, 255, 0.2);
+}
+
+.bmi-button:hover {
+  background-color: #0056b3;
+}
+
+.bmi-button:active {
+  transform: translateY(1px);
+}
+
+.bmi-result {
+  margin-top: 30px;
+}
+
+.bmi-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+}
+
+.bmi-result h1 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.status-underweight {
+  color: #8a6d3b;
+}
+.status-normal {
+  color: #28a745;
+}
+.status-overweight {
+  color: #ffc107;
+}
+.status-obesity {
+  color: #dc3545;
+}
+.status-severe-obesity {
+  color: #a50000;
+}
