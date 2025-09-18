@@ -1,103 +1,140 @@
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #f5a623;
+  --bg-color: #f7f9fc;
+  --card-bg: #ffffff;
+  --text-color: #333;
+  --border-color: #e0e0e0;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  background-color: #f0f0f0;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  margin: 0;
 }
 
-.bmi-container {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 26px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.bmi-card {
+  background-color: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.03);
   width: 90%;
-  max-width: 380px;
+  max-width: 450px;
   text-align: center;
+  animation: fadeIn 0.8s ease-out;
 }
 
-.bmi-input-group {
-  margin-bottom: 20px;
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
   text-align: left;
 }
 
-.bmi-input-group label {
+.input-group label {
   display: block;
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-.bmi-input-group input {
-  width: 100%;
-  padding: 12px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  font-size: 16px;
-  transition: all 0.2s ease-in-out;
-}
-
-.bmi-input-group input:focus {
-  outline: none;
-  border-color: #007aff;
-  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
-}
-
-.bmi-button {
-  background-color: #007aff;
-  color: #fff;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 600;
-  padding: 15px;
+  margin-bottom: 0.5rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  box-sizing: border-box;
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.15);
+}
+
+.calculate-btn {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1rem;
   width: 100%;
   border: none;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
-  box-shadow: 0 4px 6px rgba(0, 122, 255, 0.2);
+  transition: all 0.3s ease;
+  margin-top: 1rem;
 }
 
-.bmi-button:hover {
-  background-color: #0056b3;
+.calculate-btn:hover {
+  background-color: #3b7bb5;
+  transform: translateY(-2px);
 }
 
-.bmi-button:active {
-  transform: translateY(1px);
+.calculate-btn:active {
+  transform: translateY(0);
 }
 
-.bmi-result {
-  margin-top: 30px;
+.result-container {
+  margin-top: 2rem;
 }
 
 .bmi-value {
-  font-size: 24px;
+  font-size: 1.8rem;
   font-weight: 700;
-  color: #333;
+  margin-bottom: 0.5rem;
 }
 
-.bmi-result h1 {
-  font-size: 20px;
+.result-container h2 {
+  font-size: 1.2rem;
   font-weight: 600;
-  margin-top: 10px;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: inline-block;
+  color: white;
 }
 
-.status-underweight {
-  color: #8a6d3b;
+.status-underweight { background-color: #fbc02d; }
+.status-normal { background-color: #66bb6a; }
+.status-overweight { background-color: #ff8a65; }
+.status-obesity-1 { background-color: #ef5350; }
+.status-obesity-2 { background-color: #d32f2f; }
+.error-message {
+  color: #d32f2f;
+  margin-top: 1rem;
+  font-size: 0.9rem;
 }
-.status-normal {
-  color: #28a745;
-}
-.status-overweight {
-  color: #ffc107;
-}
-.status-obesity {
-  color: #dc3545;
-}
-.status-severe-obesity {
-  color: #a50000;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
